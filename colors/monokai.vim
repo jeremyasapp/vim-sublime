@@ -20,7 +20,7 @@ endif
 if ! exists("g:monokai_term_italic")
     let g:monokai_term_italic = 0
 endif
-"let g:monokai_term_italic = 1
+
 let g:monokai_termcolors = 256 " does not support 16 color term right now.
 set background=dark
 hi clear
@@ -38,16 +38,16 @@ function! s:h(group, style)
     let s:ctermformat = a:style.format
     let s:guiformat = a:style.format
   endif
-  "if g:monokai_term_italic == 0
-  "  let s:ctermformat = substitute(s:ctermformat, ",italic", "", "")
-  "  let s:ctermformat = substitute(s:ctermformat, "italic,", "", "")
-  "  let s:ctermformat = substitute(s:ctermformat, "italic", "", "")
-  "endif
-  "if g:monokai_gui_italic == 0
-  "  let s:guiformat = substitute(s:guiformat, ",italic", "", "")
-  "  let s:guiformat = substitute(s:guiformat, "italic,", "", "")
-  "  let s:guiformat = substitute(s:guiformat, "italic", "", "")
-  "endif
+  if g:monokai_term_italic == 0
+    let s:ctermformat = substitute(s:ctermformat, ",italic", "", "")
+    let s:ctermformat = substitute(s:ctermformat, "italic,", "", "")
+    let s:ctermformat = substitute(s:ctermformat, "italic", "", "")
+  endif
+  if g:monokai_gui_italic == 0
+    let s:guiformat = substitute(s:guiformat, ",italic", "", "")
+    let s:guiformat = substitute(s:guiformat, "italic,", "", "")
+    let s:guiformat = substitute(s:guiformat, "italic", "", "")
+  endif
   if g:monokai_termcolors == 16
     let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm16 : "NONE")
     let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm16 : "NONE")
@@ -307,3 +307,4 @@ call s:h("pythonClassParameters",       { "fg": s:green, "format": "italic" })
 call s:h("pythonSelf",                  { "fg": s:orange, "format": "italic" })
 call s:h("pythonExceptions",            { "fg": s:aqua, "format": "italic" })
 call s:h("pythonDocstring",             { "fg": s:warmgrey }) 
+call s:h("pythonClassSpecial",          { "fg": s:aqua }) 

@@ -117,7 +117,7 @@ syn region pythonClassVars start="(" end=")" contained contains=pythonClassParam
 syn match  pythonClassParameters "[^,]*" contained contains=pythonExtraOperator,pythonBuiltin,pythonConstant,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
 
 " Function parameters
-syn match  pythonFunction "\%(\%(def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonFunctionVars
+syn match  pythonFunction "\%(\%(def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained contains=pythonClassSpecial nextgroup=pythonFunctionVars
 syn region pythonFunctionVars start="(" end=")" contained contains=pythonFunctionParameters transparent keepend
 syn match  pythonFunctionParameters "[^,]*" contained contains=pythonSelf,pythonExtraOperator,pythonBuiltin,pythonConstant,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
 
@@ -227,8 +227,6 @@ if !exists("python_no_builtin_highlight")
   syn keyword pythonBuiltin	print property range repr reversed round set
   syn keyword pythonBuiltin	setattr slice sorted staticmethod str
   syn keyword pythonBuiltin	sum super tuple type vars zip __import__
-  " [NEW] Added python built-in class methods
-  syn keyword pythonBuiltin	__init__ __len__ __exit__ __iter__ __next__ __call__ __add__
   " Python 2 only
   syn keyword pythonBuiltin	basestring cmp execfile file
   syn keyword pythonBuiltin	long raw_input reduce reload unichr
@@ -239,6 +237,9 @@ if !exists("python_no_builtin_highlight")
   syn keyword pythonBuiltin	apply buffer coerce intern
   " avoid highlighting attributes as builtins
   " syn match   pythonAttribute	/\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
+
+  " [NEW] Added python built-in class methods
+  syn keyword pythonClassSpecial  __init__ __len__ __exit__ __iter__ __next__ __call__ __add__
 endif
 
 " From the 'Python Library Reference' class hierarchy at the bottom.
