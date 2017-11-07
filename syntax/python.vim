@@ -239,7 +239,27 @@ if !exists("python_no_builtin_highlight")
   " syn match   pythonAttribute	/\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
 
   " [NEW] Added python built-in class methods
-  syn keyword pythonClassSpecial  __init__ __len__ __exit__ __iter__ __next__ __call__ __add__
+  syn keyword pythonClassSpecial  __delattr__ __abs__ __contains__ __index__ __imul__
+  syn keyword pythonClassSpecial  __rmatmul__ __rdivmod__ __ne__ __and__ __ilshift__
+  syn keyword pythonClassSpecial  __rand__ __del__ __get__ __int__ __delete__
+  syn keyword pythonClassSpecial  __reduce__ __ixor__ __irshift__ __aexit__ __bool__
+  syn keyword pythonClassSpecial  __floordiv__ __ior__ __rpow__ __lshift__ __divmod__
+  syn keyword pythonClassSpecial  __iand__ __getattr__ __sub__ __await__ __format__
+  syn keyword pythonClassSpecial  __bytes__ __itruediv__ __lt__ __getstate__ __next__
+  syn keyword pythonClassSpecial  __delitem__ __neg__ __getnewargs__ __rshift__
+  syn keyword pythonClassSpecial  __exit__ __setstate__ __setattr__ __repr__ __aiter__
+  syn keyword pythonClassSpecial  __new__ __gt__ __aenter__ __length_hint__ __ror__
+  syn keyword pythonClassSpecial  __matmul__ __round__ __rrshift__ __rtruediv__ __pow__
+  syn keyword pythonClassSpecial  __mul__ __eq__ __ifloordiv__ __anext__ __add__ __radd__
+  syn keyword pythonClassSpecial  __rsub__ __float__ __imod__ __setitem__ __iadd__
+  syn keyword pythonClassSpecial  __call__ __rmod__ __or__ __hash__ __enter__ __xor__
+  syn keyword pythonClassSpecial  __imatmul__ __isub__ __ipow__ __ge__ __rfloordiv__
+  syn keyword pythonClassSpecial  __init__ __pos__ __rmul__ __str__ __getitem__
+  syn keyword pythonClassSpecial  __getnewargs_ex__ __reversed__ __rlshift__ __div__
+  syn keyword pythonClassSpecial  __getattribute__ __mod__ __set_name__ __missing__
+  syn keyword pythonClassSpecial  __invert__ __set__ __reduce_ex__ __dir__ __iter__
+  syn keyword pythonClassSpecial  __len__ __rxor__ __complex__ __truediv__ __le__ 
+
 endif
 
 " From the 'Python Library Reference' class hierarchy at the bottom.
