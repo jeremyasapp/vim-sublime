@@ -20,9 +20,8 @@ endif
 if ! exists("g:monokai_term_italic")
     let g:monokai_term_italic = 0
 endif
-
+"let g:monokai_term_italic = 1
 let g:monokai_termcolors = 256 " does not support 16 color term right now.
-
 set background=dark
 hi clear
 
@@ -39,16 +38,16 @@ function! s:h(group, style)
     let s:ctermformat = a:style.format
     let s:guiformat = a:style.format
   endif
-  if g:monokai_term_italic == 0
-    let s:ctermformat = substitute(s:ctermformat, ",italic", "", "")
-    let s:ctermformat = substitute(s:ctermformat, "italic,", "", "")
-    let s:ctermformat = substitute(s:ctermformat, "italic", "", "")
-  endif
-  if g:monokai_gui_italic == 0
-    let s:guiformat = substitute(s:guiformat, ",italic", "", "")
-    let s:guiformat = substitute(s:guiformat, "italic,", "", "")
-    let s:guiformat = substitute(s:guiformat, "italic", "", "")
-  endif
+  "if g:monokai_term_italic == 0
+  "  let s:ctermformat = substitute(s:ctermformat, ",italic", "", "")
+  "  let s:ctermformat = substitute(s:ctermformat, "italic,", "", "")
+  "  let s:ctermformat = substitute(s:ctermformat, "italic", "", "")
+  "endif
+  "if g:monokai_gui_italic == 0
+  "  let s:guiformat = substitute(s:guiformat, ",italic", "", "")
+  "  let s:guiformat = substitute(s:guiformat, "italic,", "", "")
+  "  let s:guiformat = substitute(s:guiformat, "italic", "", "")
+  "endif
   if g:monokai_termcolors == 16
     let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm16 : "NONE")
     let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm16 : "NONE")
@@ -159,7 +158,7 @@ call s:h("Typedef",       { "fg": s:aqua })
     
 call s:h("Identifier",    { "fg": s:green })
 call s:h("Function",      { "fg": s:green })
-                         
+call s:h("Parameters",    { "fg": s:orange})                        
 call s:h("Statement",     { "fg": s:pink })
 call s:h("Operator",      { "fg": s:pink })
 call s:h("Label",         { "fg": s:pink })
@@ -182,7 +181,7 @@ call s:h("Tag",           { "fg": s:pink })
 "        Debug"
 
 call s:h("Todo",          { "fg": s:orange,   "format": "bold,italic" })
-call s:h("Comment",       { "fg": s:warmgrey, "format": "italic" })
+call s:h("Comment",       { "fg": s:warmgrey })
                          
 call s:h("Underlined",    { "fg": s:green })
 call s:h("Ignore",        {})
@@ -300,21 +299,11 @@ call s:h("cInclude",                    { "fg": s:green })
 call s:h("cDefine",                     { "fg": s:green })
 
 " python
-call s:h("pythonBuiltinFunc",           { "fg": s:aqua })
-"call s:h("pythonConstant",              { "fg": s:purple })
-"call s:h("pythonString",                { "fg": s:yellow })
-"call s:h("pythonTripleString",          { "fg": s:yellow })
-"call s:h("pythonParameters",            { "fg": s:orange })
-"call s:h("myFunctionParam",             { "fg": s:orange })
-"call s:h("pythonStatement",             { "fg": s:pink })
-"call s:h("myFunction",                  { "fg": s:aqua })
-"call s:h("pythonInclude",               { "fg": s:pink })
-"call s:h("pythonException",             { "fg": s:pink })
-"call s:h("pythonOperator",              { "fg": s:pink })
-"call s:h("pythonExtraOperator",         { "fg": s:pink })
-"call s:h("pythonRepeat",                { "fg": s:pink })
-"call s:h("pythonConditional",           { "fg": s:pink })
-call s:h("pythonFunction",              { "fg": s:aqua })
-"call s:h("pythonClass",                 { "fg": s:green })
-"call s:h("pythonDoctest",               { "fg": s:warmgrey })
-"call s:h("pythonDocstring",               { "fg": s:warmgrey })
+call s:h("pythonBuiltin",               { "fg": s:aqua })
+call s:h("pythonDefine",                { "fg": s:aqua, "format": "italic" })
+call s:h("pythonClass",                 { "fg": s:green })
+call s:h("pythonFunctionParameters",    { "fg": s:orange, "format": "italic" })
+call s:h("pythonClassParameters",       { "fg": s:green, "format": "italic" })
+call s:h("pythonSelf",                  { "fg": s:orange, "format": "italic" })
+call s:h("pythonExceptions",            { "fg": s:aqua, "format": "italic" })
+call s:h("pythonDocstring",             { "fg": s:warmgrey }) 
