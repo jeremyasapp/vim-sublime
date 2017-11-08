@@ -1,5 +1,7 @@
 # vim-sublime
-An effort to make vim look like sublime.
+An effort to make vim look like sublime.  
+Currently supports the following languages:
+- Python
 
 ## Install
 
