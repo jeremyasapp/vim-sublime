@@ -8,6 +8,19 @@ Currently supports the following languages:
 If you don't have one already, create the directory *~/.vim*  
 In that directory, copy the *colors* and *syntax* folders from this repository.
 
+In your *~/.vimrc*, paste following lines:
+
+```
+syntax on
+colorscheme monokai
+```
+
+If your temrinal supports true color, add:
+
+```
+set termguicolors
+```
+
 You are good to go!
 
 ## Italic
