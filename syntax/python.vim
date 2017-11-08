@@ -31,7 +31,7 @@ let python_no_doctest_highlight = 1
 "   let python_no_exception_highlight = 1
 "   let python_no_number_highlight = 1
 "   let python_space_error_highlight = 1
-"
+"   let python_no_func_call_highlight = 1
 "   let python_no_parameter_highlight = 1
 "   let python_no_operator_highlight = 1
 let python_self_cls_highlight = 1
@@ -336,10 +336,14 @@ if !exists("python_no_doctest_highlight")
 	  \ contained contains=@NoSpell
   endif
 endif
-" Don't highlight after a dot
-syntax match  pythonNoise    /[:,\;]\{1}/
-syntax match  pythonNoise /[\.]\{1}/ skipwhite skipempty nextgroup=pythonObjectProp
-syntax match  pythonObjectProp         contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*\>/
+" Don't highlight after a dot, but highlight function calls
+syntax match  pythonNoise   /[:,;]/
+syntax match  pythonNoise /[\.]/ skipwhite skipempty nextgroup=pythonObjectProp,pythonFuncCall
+syntax match  pythonObjectProp  contained /\<\K\k*/
+
+if !exists('python_no_func_call_highlight')
+  syntax match  pythonFuncCall  /\<\K\k*\ze\s*(/
+endif
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
