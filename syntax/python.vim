@@ -81,7 +81,6 @@ set cpo&vim
 syn keyword pythonDefine	class nextgroup=pythonClass skipwhite
 syn keyword pythonDefine	def nextgroup=pythonFunction skipwhite
 syn keyword pythonDefine	lambda nextgroup=pythonLambdaVars skipwhite
-syn keyword pythonStatement	False, None, True
 syn keyword pythonStatement	as assert break continue del exec global
 syn keyword pythonStatement	nonlocal pass print return with
 syn keyword pythonConditional	elif else if
@@ -337,7 +336,10 @@ if !exists("python_no_doctest_highlight")
 	  \ contained contains=@NoSpell
   endif
 endif
-
+" Don't highlight after a dot
+syntax match  pythonNoise    /[:,\;]\{1}/
+syntax match  pythonNoise /[\.]\{1}/ skipwhite skipempty nextgroup=pythonObjectProp
+syntax match  pythonObjectProp         contained /\<[a-zA-Z_$][0-9a-zA-Z_$]*\>/
 " Sync at the beginning of class, function, or method definition.
 syn sync match pythonSync grouphere NONE "^\s*\%(def\|class\)\s\+\h\w*\s*("
 
