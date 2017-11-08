@@ -100,7 +100,7 @@ syn match pythonExtraOperator       "\%([~!^&|*/%+-]\|\%(class\s*\)\@<!<<\|<=>\|
 syn match pythonExtraPseudoOperator "\%(-=\|/=\|\*\*=\|\*=\|&&=\|&=\|&&\|||=\||=\|||\|%=\|+=\|!\~\|!=\)"
 
 " Decorators (new in Python 2.4)
-syn match   pythonDecorator	"@" display nextgroup=pythonFunction skipwhite
+syn match   pythonDecorator	"@" display nextgroup=pythonBuiltin skipwhite
 " The zero-length non-grouping match before the function name is
 " extremely important in pythonFunction.  Without it, everything is
 " interpreted as a function inside the contained environment of
