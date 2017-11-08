@@ -80,7 +80,7 @@ set cpo&vim
 " [NEW] Change from pythonStatement to pythonDefine
 syn keyword pythonDefine	class nextgroup=pythonClass skipwhite
 syn keyword pythonDefine	def nextgroup=pythonFunction skipwhite
-syn keyword pythonDefine	lambda
+syn keyword pythonDefine	lambda nextgroup=pythonLambdaVars skipwhite
 syn keyword pythonStatement	False, None, True
 syn keyword pythonStatement	as assert break continue del exec global
 syn keyword pythonStatement	nonlocal pass print return with
@@ -114,12 +114,15 @@ syn match pythonBrackets "[(|)]" contained skipwhite
 " Class parameters
 syn match  pythonClass "\%(\%(def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonClassVars
 syn region pythonClassVars start="(" end=")" contained contains=pythonClassParameters transparent keepend
-syn match  pythonClassParameters "[^,]*" contained contains=pythonExtraOperator,pythonBuiltin,pythonConstant,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
+syn match  pythonClassParameters "[^,]*" contained contains=pythonExtraOperator,pythonConstant,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
 
 " Function parameters
 syn match  pythonFunction "\%(\%(def\s\|class\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained contains=pythonClassSpecial nextgroup=pythonFunctionVars
 syn region pythonFunctionVars start="(" end=")" contained contains=pythonFunctionParameters transparent keepend
-syn match  pythonFunctionParameters "[^,]*" contained contains=pythonSelf,pythonExtraOperator,pythonBuiltin,pythonConstant,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
+syn match  pythonFunctionParameters "[^,:]*" contained contains=pythonSelf,pythonExtraOperator,pythonConstant,pythonStatement,pythonNumber,pythonString,pythonBrackets skipwhite
+
+" Lambda parameters
+syn region pythonLambdaVars start="." end=":" contained contains=pythonFunctionParameters transparent keepend
 
 syn match   pythonComment	"#.*$" contains=pythonTodo,@Spell
 syn keyword pythonTodo		FIXME NOTE NOTES TODO XXX contained
@@ -236,7 +239,7 @@ if !exists("python_no_builtin_highlight")
   " non-essential built-in functions; Python 2 only
   syn keyword pythonBuiltin	apply buffer coerce intern
   " avoid highlighting attributes as builtins
-  " syn match   pythonAttribute	/\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
+  "syn match   pythonAttribute	/\.\h\w*/hs=s+1 contains=ALLBUT,pythonBuiltin transparent
 
   " [NEW] Added python built-in class methods
   syn keyword pythonClassSpecial  __delattr__ __abs__ __contains__ __index__ __imul__
